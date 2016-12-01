@@ -1,0 +1,41 @@
+k0 2*pi*freq0[Hz]/c_const
+kx lambda[1/m] "show default solver" to blacken lambda/periodic along x-direction
+ky 0[1/m]
+kz 0[1/m]
+ux 0[V/m] uz is dependent
+uy 0[V/m] uz is dependent
+kcrossux ky*uz-kz*uy
+kcrossuy kz*ux-kx*uz
+kcrossuz kx*uy-ky*ux
+curlux d(uz,y) d(uz,y)-d(uy,z)
+curluy -d(uz,x) d(ux,z)-d(uz,x)
+curluz 0[V/m^2] d(uy,x)-d(ux,y)
+epsilonr_xx epsr
+epsilonr_yy epsr
+epsilonr_zz epsr
+mur_xx mur_diag
+mur_xy mur_offdiag
+mur_xz 0
+mur_yx -mur_offdiag
+mur_yy mur_diag
+mur_yz 0
+mur_zx 0
+mur_zy 0
+mur_zz mur_diag
+epsrinv_xx 1/epsilonr_xx
+epsrinv_yy 1/epsilonr_yy
+epsrinv_zz 1/epsilonr_zz
+murinv_xx murinv_diag
+murinv_xy murinv_offdiag
+murinv_xz 0
+murinv_yx -murinv_offdiag
+murinv_yy murinv_diag
+murinv_yz 0
+murinv_zx 0
+murinv_zy 0
+murinv_zz murinv_diag1
+weak1 k0^2*(test(ux)*epsilonr_xx*ux+test(uy)*epsilonr_yy*uy+test(uz)*epsilonr_zz*uz)
+weak2 -(test(curlux)*(murinv_xx*curlux+murinv_xy*curluy+murinv_xz*curluz)+test(curluy)*(murinv_yx*curlux+murinv_yy*curluy+murinv_yz*curluz)+test(curluz)*(murinv_zx*curlux+murinv_zy*curluy+murinv_zz*curluz))
+weak3 1i*(test(curlux)*(murinv_xx*kcrossux+murinv_xy*kcrossuy+murinv_xz*kcrossuz)+test(curluy)*(murinv_yx*kcrossux+murinv_yy*kcrossuy+murinv_yz*kcrossuz)+test(curluz)*(murinv_zx*kcrossux+murinv_zy*kcrossuy+murinv_zz*kcrossuz))
+weak4 -1i*(test(kcrossux)*(murinv_xx*curlux+murinv_xy*curluy+murinv_xz*curluz)+test(kcrossuy)*(murinv_yx*curlux+murinv_yy*curluy+murinv_yz*curluz)+test(kcrossuz)*(murinv_zx*curlux+murinv_zy*curluy+murinv_zz*curluz))
+weak5 -(test(kcrossux)*(murinv_xx*kcrossux+murinv_xy*kcrossuy+murinv_xz*kcrossuz)+test(kcrossuy)*(murinv_yx*kcrossux+murinv_yy*kcrossuy+murinv_yz*kcrossuz)+test(kcrossuz)*(murinv_zx*kcrossux+murinv_zy*kcrossuy+murinv_zz*kcrossuz))
