@@ -1,5 +1,5 @@
 k0 2*pi*freq0[Hz]/c_const
-kx lambda[1/m] "show default solver" to blacken lambda/periodic along x-direction
+kx lambda[1/m]
 ky 0[1/m]
 kz 0[1/m]
 ux 0[V/m] uz is dependent
